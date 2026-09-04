@@ -157,7 +157,7 @@ Intermediate reports, exclusion lists, PLINK files, and plots are renamed with t
 ## Recommended directory structure
 
 ```text
-project_qc/
+/step1_preimputation_QC
 ├── 01_QC_TARGET_DATA_PIPELINE_PRC_v4.1.sh
 ├── Target_data.ped
 ├── Target_data.map
