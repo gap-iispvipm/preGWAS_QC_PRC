@@ -1,1 +1,1 @@
-Second step pre-GWAS QC - Pol Ramon Master Final Project and template that the GAP (Genetica i Ambiente en Psiquiatria) uses as template
+Second step script - Pol Ramon Master Final Project and Template for the newest version of the GAP research group pipeline
