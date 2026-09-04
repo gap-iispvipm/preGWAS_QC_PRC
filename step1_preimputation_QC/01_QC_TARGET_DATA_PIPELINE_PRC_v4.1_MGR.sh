@@ -34,7 +34,7 @@
 
 # ===================================
 # VARIABLES TO DEFINE
-DATA="Target_data_gobis_gsa25_project"
+DATA="Target_data"
 
 # MODULES NEEDED
 module load PLINK/1.9b_6.21-x86_64
