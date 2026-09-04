@@ -32,8 +32,8 @@ runplink="plink" #path to run plink
 
 # ===================================
 # IMPUTATION SERVER DATA
-#impdata="https://imputationserver.sph.umich.edu/get/h8fXabq0MTYoQU6UcQMiy6arMpUiCp7XRgmovjD5" #URL to download the imputed data from web server
-#imppassword="yK23mM]qReD-xN"
+#impdata="https://imputationserver.sph.umich.edu/get/{YOUR_LINK}" #URL to download the imputed data from web server
+#imppassword="{YOUR_PASSWORD}"
 # ===================================
 
 ##### The current variables for PLINK are going to be the following:
@@ -63,14 +63,14 @@ echo "### Script running...enjoy!"
 #echo "### Starting Step 1: imputed data merging ###"
 
 # Rearrange imputated data manually using terminal commands.
-#	# FIRST, download manually from Michigan all the files resulting from the run: chromosome files (.zip and .log) as well as other run info.
-#	curl -sL $impdata | bash
+# FIRST, download manually from Michigan all the files resulting from the run: chromosome files (.zip and .log) as well as other run info.
+	curl -sL $impdata | bash
 
-#	# SECOND, unzip all the chromosome files using the Michigan password from the run:
-#	for chr in {1..22}; do unzip -P $imppassword chr_${chr}.zip; done
+# SECOND, unzip all the chromosome files using the Michigan password from the run:
+for chr in {1..22}; do unzip -P $imppassword chr_${chr}.zip; done
 
-#	# THIRD, merge all chromosme files into one.
-#	bcftools concat -O z -o 1_AllChromosomes.vcf.gz chr1.dose.vcf.gz chr2.dose.vcf.gz chr3.dose.vcf.gz chr4.dose.vcf.gz chr5.dose.vcf.gz chr6.dose.vcf.gz chr7.dose.vcf.gz chr8.dose.vcf.gz chr9.dose.vcf.gz chr10.dose.vcf.gz chr11.dose.vcf.gz chr12.dose.vcf.gz chr13.dose.vcf.gz chr14.dose.vcf.gz chr15.dose.vcf.gz chr16.dose.vcf.gz chr17.dose.vcf.gz chr18.dose.vcf.gz chr19.dose.vcf.gz chr20.dose.vcf.gz chr21.dose.vcf.gz chr22.dose.vcf.gz
+# THIRD, merge all chromosme files into one.
+bcftools concat -O z -o 1_AllChromosomes.vcf.gz chr1.dose.vcf.gz chr2.dose.vcf.gz chr3.dose.vcf.gz chr4.dose.vcf.gz chr5.dose.vcf.gz chr6.dose.vcf.gz chr7.dose.vcf.gz chr8.dose.vcf.gz chr9.dose.vcf.gz chr10.dose.vcf.gz chr11.dose.vcf.gz chr12.dose.vcf.gz chr13.dose.vcf.gz chr14.dose.vcf.gz chr15.dose.vcf.gz chr16.dose.vcf.gz chr17.dose.vcf.gz chr18.dose.vcf.gz chr19.dose.vcf.gz chr20.dose.vcf.gz chr21.dose.vcf.gz chr22.dose.vcf.gz
 
 #echo "### End of Step 1: imputed data merging ###"
 
@@ -79,17 +79,17 @@ echo "### Script running...enjoy!"
 ### Step 2: QC TARGET - INFO SCORE ###
 #echo "### Starting Step 2: qc target - info score ###"
 
-#	# Filter according info (r2) results from merged files and keep compressed.
-#	bcftools filter -Oz -i 'INFO/R2>0.9' 1_AllChromosomes.vcf.gz > 2_Target.imputated.vcf.gz
+# Filter according info (r2) results from merged files and keep compressed.
+bcftools filter -Oz -i 'INFO/R2>0.9' 1_AllChromosomes.vcf.gz > 2_Target.imputated.vcf.gz
 	
-#	# Create data into bfiles.
-#	$runplink --vcf 2_Target.imputated.vcf.gz --make-bed --const-fid --out Target.imputated
-#	for i in $( find . -name 'Target.imputated.*' -printf '%f\n' | awk '!/.bed/ && !/.bim/ && !/.fam/' ); do mv "$i" "2_$i" ; done
+# Create data into bfiles.
+$runplink --vcf 2_Target.imputated.vcf.gz --make-bed --const-fid --out Target.imputated
+for i in $( find . -name 'Target.imputated.*' -printf '%f\n' | awk '!/.bed/ && !/.bim/ && !/.fam/' ); do mv "$i" "2_$i" ; done
 	                                                                                                   
-#	# Delete big intermedied files (TB!):
-#	rm 2_Target.imputated.vcf.gz
+# Delete big intermedied files (TB!):
+rm 2_Target.imputated.vcf.gz
 
-#echo "### End of Step 2: qc target - info score ###"
+echo "### End of Step 2: qc target - info score ###"
 
 
 ###################################################################
