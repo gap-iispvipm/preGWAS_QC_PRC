@@ -1,1 +1,1 @@
-Step 3 pre-GWAS QC - Pol Ramon Master Final Project
+Third step script - Pol Ramon Master Final Project and Template for the newest version of the GAP research group pipeline
