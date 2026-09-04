@@ -1,4 +1,4 @@
-# Pre-GWAS Quality Control with PLINK
+# STEP 1 - Pre-GWAS Quality Control with PLINK
 
 This Bash pipeline performs quality control (QC) on genetic data before a genome-wide association study (GWAS). It applies consecutive variant- and sample-level filters and generates diagnostic plots with R scripts.
 
