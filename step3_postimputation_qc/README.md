@@ -1,4 +1,4 @@
-# Post-Imputation Quality Control Pipeline
+# STEP 3 - Post-Imputation Quality Control Pipeline
 
 This Bash pipeline performs post-imputation quality control on genotyped data. It prepares imputed variants for downstream polygenic risk score (PRS) analysis by removing ambiguous or duplicated variants, applying minor allele frequency and missingness filters, and generating diagnostic plots.
 
